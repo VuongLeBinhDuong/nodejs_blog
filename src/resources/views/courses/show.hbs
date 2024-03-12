@@ -1,0 +1,24 @@
+<div class="mt-4">
+    <div class="row">
+        <div class="col-lg-7">
+            <h2 class="mt-4">{{course.name}}</h2>
+            <iframe class="mt-4" width="560" height="315" src="https://www.youtube.com/embed/{{course.videoId}}?si=qZ7FFToMXA2K--Vi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <h3 class="mt-4">{{course.description}}</h3>
+        </div>
+
+        <div class="col-lg-2"></div>
+
+        <div class="col-lg-3 mt-4">
+            <ul class="button-list">
+                <li><h2>Course information</h2></li>
+                <ul>
+                    <li><button class="mt-4">What is {{course.name}}</button></li>
+                    <li><button class="mt-4">Teacher</button></li>
+                    <li><button class="mt-4">Courses material</button></li>
+                    <li><button class="mt-4">How to assess</button></li>
+                    <li><button class="mt-4">Final aim</button></li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+.card-courses-item {
+  margin-top: 16px;
+}
+
+.user-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+.nav-item.dropdown .nav-link {
+  display: inline-flex; /* Use inline-flex to keep text aligned with the avatar */
+  align-items: center; /* Center align items vertically */
+  vertical-align: middle; /* Ensure the link is also vertically centered */
+}
+
+.button-list {
+  list-style-type: none; /* Remove bullets from the outer list */
+}
+
+.button-list ul {
+  list-style-type: none; /* Remove bullets from the nested list */
+}
+
+.button-list {
+  list-style-type: none;
+  padding: 0;
+}
+.button-list li {
+  margin-bottom: 10px;
+}
+.button-list li button {
+  background-color: #808080;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.button-list li button:hover {
+  background-color: #555555;
+}
+
+.checkbox-select-all-option {
+  width: 160px;
+  text-align: center;
+  margin: 0 16px;
+}
+
+/*# sourceMappingURL=app.css.map */

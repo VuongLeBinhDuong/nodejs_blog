@@ -1,0 +1,91 @@
+<div class="mt-4">
+    <div>
+        <h3>Trash Can</h3>
+        <a href="/me/stored/courses"> My Courses</a>
+    </div>
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Course name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Deleted Date</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {{#each courses}}
+                <tr>
+                    <th scope="row">{{sum @index 1}}</th>
+                    <td>{{this.name}}</td>
+                    <td>{{this.description}}</td>
+                    <td>{{this.deletedAt}}</td>
+                    <td>
+                        <a href="" class="btn bth-link btn-restore" data-id="{{this._id}}">Restore</a>
+                        <a href="" class="btn bth-link" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#delete-course-modal">Delete permanently</a>
+                    </td>
+                </tr>
+                {{else}}
+                <tr>    
+                    <td colspan="5" class="text-center">
+                        Empty trash can 
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+    </table>
+</div>
+
+<div id="delete-course-modal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete this course?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>This course will be deleted permanently. Do you want to continue?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button id="btn-delete-course" type="button" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form name="delete-form" method="POST"></form>
+<form name="restore-form" method="POST"></form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var courseId;
+        var deleteForm = document.forms['delete-form']
+        var btnDeleteCourse = document.getElementById('btn-delete-course')
+        var restoreForm = document.forms['restore-form']
+        var btnRestore = document.querySelectorAll('.btn-restore');
+        const delete_course_modal = document.getElementById('delete-course-modal')
+
+        if (delete_course_modal) {
+            delete_course_modal.addEventListener('show.bs.modal', event => {
+                const button = event.relatedTarget
+                courseId = button.getAttribute('data-id')
+            })
+        }
+
+        btnDeleteCourse.onclick = function() {
+           deleteForm.action = '/courses/' + courseId + '/destroy?_method=DELETE';
+           deleteForm.submit();
+        }
+        
+        btnRestore.forEach(e => {
+            e.addEventListener('click', (event) => {
+                event.preventDefault();
+                var courseId2 = e.getAttribute('data-id');
+                restoreForm.action = '/courses/' + courseId2 + '/restore?_method=PATCH';
+                restoreForm.submit();
+            })
+        })
+    });
+</script>
